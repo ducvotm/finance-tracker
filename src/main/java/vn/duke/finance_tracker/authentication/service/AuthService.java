@@ -20,35 +20,26 @@ public class AuthService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    /**
-     * Authenticate a user with credentials
-     */
     @Transactional
     public AuthResponse login(LoginRequest request) {
-        // Find user by username
-        Optional<User> userOpt = userRepository.findByUsername(request.getUsername());
+        Optional<User> existedUserName = userRepository.findByUsername(request.getUsername());
 
-        if (userOpt.isEmpty()) {
+        if (existedUserName.isEmpty()) {
             return AuthResponse.failure("Invalid username or password");
         }
 
-        User user = userOpt.get();
+        User existedUser = existedUserName.get();
 
-        // Validate password
-        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+        if (!passwordEncoder.matches(request.getPassword(), existedUser.getPassword())) {
             return AuthResponse.failure("Invalid username or password");
         }
 
-        // Update last login time
-        user.setLastLogin(LocalDateTime.now());
-        userRepository.save(user);
+        existedUser.setLastLogin(LocalDateTime.now());
+        userRepository.save(existedUser);
 
-        return AuthResponse.success(user.getUsername(), user.getId());
+        return AuthResponse.success(existedUser.getUsername(), existedUser.getId());
     }
 
-    /**
-     * Register a new user
-     */
     @Transactional
     public AuthResponse register(RegisterRequest request) {
         // Check if username already exists
@@ -62,14 +53,15 @@ public class AuthService {
         }
 
         // Create and save new user
-        User user = new User();
-        user.setUsername(request.getUsername());
-        user.setEmail(request.getEmail());
-        user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setFullName(request.getFullName());
-        user.setLastLogin(LocalDateTime.now());
+        User newUser = User.builder()
+                .username(request.getUsername())
+                .email(request.getEmail())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .fullName(request.getFullName())
+                .roles("USER") //Default value
+                .build();
 
-        User savedUser = userRepository.save(user);
+        User savedUser = userRepository.save(newUser);
 
         return AuthResponse.success(savedUser.getUsername(), savedUser.getId());
     }
