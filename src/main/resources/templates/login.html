@@ -1,22 +1,32 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Please Log In</title>
+    <title>Login Page</title>
+    <!-- This is how we connect our HTML to our CSS file -->
+    <link rel="stylesheet" th:href="@{/resources/static/login-style.css}">
 </head>
 <body>
-<h1>Please Log In</h1>
-<div th:if="${param.error}">
-    Invalid username and password.</div>
-<div th:if="${param.logout}">
-    You have been logged out.</div>
-<form th:action="@{/login}" method="post">
-    <div>
-        <input type="text" name="username" placeholder="Username"/>
+    <div class="login-form">
+        <h2>Please Log In</h2>
+        <div th:if="${param.error}" class="error-message">
+            Invalid username and password.
+        </div>
+        <div th:if="${param.logout}" class="error-message">
+            You have been logged out.
+        </div>
+        <form th:action="@{/login}" method="post">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Enter username" required/>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter password" required/>
+            </div>
+            <div>
+                <button type="submit" class="form-button">Log In</button>
+            </div>
+        </form>
     </div>
-    <div>
-        <input type="password" name="password" placeholder="Password"/>
-    </div>
-    <input type="submit" value="Log in" />
-</form>
 </body>
 </html>
