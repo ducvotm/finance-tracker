@@ -1,5 +1,5 @@
 package vn.duke.finance_tracker.api.common.enums;
 
-public enum Type {
+public enum TypeEnum {
     INCOME, EXPENSE;
 }

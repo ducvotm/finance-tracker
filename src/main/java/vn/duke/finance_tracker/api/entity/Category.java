@@ -1,11 +1,11 @@
-package vn.duke.finance_tracker.api.dto;
+package vn.duke.finance_tracker.api.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import vn.duke.finance_tracker.api.common.enums.Type;
+import vn.duke.finance_tracker.api.common.enums.TypeEnum;
 
 @Entity
 @Data
@@ -27,6 +27,6 @@ public class Category {
     private String name;
 
     @Enumerated(EnumType.ORDINAL)
-    private Type type;
+    private TypeEnum type;
 
 }
