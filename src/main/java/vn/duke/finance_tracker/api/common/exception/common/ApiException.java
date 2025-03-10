@@ -1,4 +1,4 @@
-package vn.duke.finance_tracker.api.common.exception;
+package vn.duke.finance_tracker.api.common.exception.common;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -14,5 +14,9 @@ public class ApiException extends RuntimeException {
         super(message);
         this.errorCode = errorCode;
         this.httpStatus = httpStatus;
+    }
+
+    public ApiException(String message) {
+        this(500, HttpStatus.INTERNAL_SERVER_ERROR, message);
     }
 }
