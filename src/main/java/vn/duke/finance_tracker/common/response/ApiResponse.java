@@ -1,11 +1,11 @@
-package vn.duke.finance_tracker.api.common.response;
+package vn.duke.finance_tracker.common.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
-import vn.duke.finance_tracker.api.common.errorcode.ErrorCode;
+import vn.duke.finance_tracker.common.errorcode.ErrorCode;
 
 @Data
 @Builder

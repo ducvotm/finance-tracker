@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import vn.duke.finance_tracker.api.common.enums.TypeEnum;
+import vn.duke.finance_tracker.common.enums.TypeEnum;
 
 @Entity
 @Data

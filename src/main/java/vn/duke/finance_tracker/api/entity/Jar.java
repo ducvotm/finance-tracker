@@ -15,6 +15,7 @@ public class Jar {
     @Column(name = "target_amount")
     private int targetAmount;
 
-    @Column(name = "actualAmount")
+    @Column(name = "actual_amount")
     private int actualAmount;
+
 }

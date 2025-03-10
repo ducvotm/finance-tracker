@@ -1,4 +1,4 @@
-package vn.duke.finance_tracker.api.common.errorcode;
+package vn.duke.finance_tracker.common.errorcode;
 
 public class ErrorCode {
 

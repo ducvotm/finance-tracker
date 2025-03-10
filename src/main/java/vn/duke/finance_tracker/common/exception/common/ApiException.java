@@ -1,4 +1,4 @@
-package vn.duke.finance_tracker.api.common.exception.common;
+package vn.duke.finance_tracker.common.exception.common;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

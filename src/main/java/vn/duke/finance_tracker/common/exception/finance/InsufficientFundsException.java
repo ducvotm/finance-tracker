@@ -1,8 +1,8 @@
-package vn.duke.finance_tracker.api.common.exception.finance;
+package vn.duke.finance_tracker.common.exception.finance;
 
 import org.springframework.http.HttpStatus;
-import vn.duke.finance_tracker.api.common.errorcode.ErrorCode;
-import vn.duke.finance_tracker.api.common.exception.common.ApiException;
+import vn.duke.finance_tracker.common.errorcode.ErrorCode;
+import vn.duke.finance_tracker.common.exception.common.ApiException;
 
 public class InsufficientFundsException extends ApiException {
 

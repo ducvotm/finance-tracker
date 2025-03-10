@@ -1,4 +1,4 @@
-package vn.duke.finance_tracker.api.common.exception;
+package vn.duke.finance_tracker.common.exception;
 
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-import vn.duke.finance_tracker.api.common.errorcode.ErrorCode;
-import vn.duke.finance_tracker.api.common.exception.common.ApiException;
-import vn.duke.finance_tracker.api.common.response.ApiResponse;
+import vn.duke.finance_tracker.common.errorcode.ErrorCode;
+import vn.duke.finance_tracker.common.exception.common.ApiException;
+import vn.duke.finance_tracker.common.response.ApiResponse;
 
 import java.util.stream.Collectors;
 
