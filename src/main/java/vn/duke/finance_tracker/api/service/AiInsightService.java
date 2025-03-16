@@ -1,10 +1,13 @@
 package vn.duke.finance_tracker.api.service;
 
+import vn.duke.finance_tracker.api.dto.in.AiInsightDtoIn;
+import vn.duke.finance_tracker.api.entity.AiInsight;
+
 public interface AiInsightService {
 
-    AccountDtoOut create(AccountDtoIn accountDtoIn);
-    AccountDtoOut update(Long id, AccountDtoIn accountDtoIn);
-    AccountDtoOut get(Long id);
+    AiInsight create(AiInsightDtoIn aiInsightDtoIn);
+    AiInsight update(Long id, AiInsightDtoIn aiInsightDtoIn);
+    AiInsight get(Long id);
     void delete(Long id);
 
 }
