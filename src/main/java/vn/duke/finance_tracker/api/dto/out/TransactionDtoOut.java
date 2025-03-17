@@ -1,28 +1,23 @@
-package vn.duke.finance_tracker.api.dto.in;
+package vn.duke.finance_tracker.api.dto.out;
 
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
-public class TransactionDtoIn {
-
-    @NotNull
+public class TransactionDtoOut {
+    private Long id;
     private BigDecimal amount;
-
     private String description;
-
-    @NotNull
     private LocalDateTime transactionDate;
 
-    @NotNull
     private Long categoryId;
+    private String categoryName;
 
-    @NotNull
     private Long accountId;
+    private String accountName;
+
 
 
 }
