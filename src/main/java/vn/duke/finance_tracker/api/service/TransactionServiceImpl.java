@@ -4,6 +4,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import vn.duke.finance_tracker.api.dto.in.TransactionDtoIn;
+import vn.duke.finance_tracker.api.dto.out.TransactionDtoOut;
 import vn.duke.finance_tracker.api.entity.Account;
 import vn.duke.finance_tracker.api.entity.Category;
 import vn.duke.finance_tracker.api.entity.Transaction;
@@ -25,7 +26,7 @@ public class TransactionServiceImpl implements TransactionService {
         this.categoryRepository = categoryRepository;
     }
 
-    public Transaction create(TransactionDtoIn transactionDtoIn) {
+    public TransactionDtoOut create(TransactionDtoIn transactionDtoIn) {
 
         Account account = accountRepository.findById(transactionDtoIn.getAccountId())
                 .orElseThrow(() -> new EntityNotFoundException("Account not found"));
@@ -42,14 +43,14 @@ public class TransactionServiceImpl implements TransactionService {
                 .build()
         );
 
-        return transaction;
+        return TransactionDtoOut.from(transaction);
     }
 
-    public Transaction update(Long id, TransactionDtoIn transactionDtoIn) {
+    public TransactionDtoOut update(Long id, TransactionDtoIn transactionDtoIn) {
         return null;
     }
 
-    public Transaction get(Long id) {
+    public TransactionDtoOut get(Long id) {
         return null;
     }
 

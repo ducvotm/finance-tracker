@@ -30,7 +30,7 @@ public class Transaction {
     private BigDecimal amount;
     private String description;
 
-    @Column(name = "transaction_date")
+    @Column(name = "transaction_date", nullable = false)
     private LocalDateTime transactionDate;
 
     @Column(name = "created_at")
