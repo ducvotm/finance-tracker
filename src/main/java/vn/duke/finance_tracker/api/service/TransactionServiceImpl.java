@@ -47,7 +47,28 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     public TransactionDtoOut update(Long id, TransactionDtoIn transactionDtoIn) {
-        return null;
+
+        Transaction existedTransaction = transactionRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Transaction not found"));
+
+        Account account = accountRepository.findById(transactionDtoIn.getAccountId())
+                .orElseThrow(() -> new EntityNotFoundException("Account not found"));
+
+        Category category = categoryRepository.findById(transactionDtoIn.getCategoryId())
+                .orElseThrow(() -> new EntityNotFoundException("Category not found"));
+
+        Transaction updatedTransaction = existedTransaction.toBuilder()
+                .id(existedTransaction.getId())
+                .amount(transactionDtoIn.getAmount())
+                .description(transactionDtoIn.getDescription())
+                .transactionDate(transactionDtoIn.getTransactionDate())
+                .category(category)
+                .account(account)
+                .build();
+
+        transactionRepository.save(updatedTransaction);
+
+        return TransactionDtoOut.from(updatedTransaction);
     }
 
     public TransactionDtoOut get(Long id) {
@@ -55,5 +76,9 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     public void delete(Long id) {
+    }
+
+    public void validateCategoryAndAccount(Category category, Account account) {
+
     }
 }
