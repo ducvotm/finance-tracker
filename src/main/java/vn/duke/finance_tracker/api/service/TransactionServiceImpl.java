@@ -26,6 +26,7 @@ public class TransactionServiceImpl implements TransactionService {
         this.categoryRepository = categoryRepository;
     }
 
+    @Override
     public TransactionDtoOut create(TransactionDtoIn transactionDtoIn) {
 
         Account account = accountRepository.findById(transactionDtoIn.getAccountId())
@@ -46,6 +47,7 @@ public class TransactionServiceImpl implements TransactionService {
         return TransactionDtoOut.from(transaction);
     }
 
+    @Override
     public TransactionDtoOut update(Long id, TransactionDtoIn transactionDtoIn) {
 
         Transaction existedTransaction = transactionRepository.findById(id)
@@ -71,11 +73,24 @@ public class TransactionServiceImpl implements TransactionService {
         return TransactionDtoOut.from(updatedTransaction);
     }
 
+    @Override
     public TransactionDtoOut get(Long id) {
-        return null;
+        Transaction transaction = transactionRepository.findById(id)
+
+                .orElseThrow(() -> new EntityNotFoundException("Transaction not found"));
+
+        return TransactionDtoOut.from(transaction);
     }
 
+    @Override
     public void delete(Long id) {
+        Transaction transaction = transactionRepository.findById(id)
+                        .orElseThrow(() -> new EntityNotFoundException("Transaction not found"));
+
+        transactionRepository.delete(transaction);
+
+        System.out.println("Transaction with ID: " + id + " is deleted");
+
     }
 
     public void validateCategoryAndAccount(Category category, Account account) {
