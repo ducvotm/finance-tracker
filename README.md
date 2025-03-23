@@ -1,158 +1,163 @@
-# Personal Finance Tracker with AI Insights (MVP)
+# 💰 Personal Finance Tracker
 
-A simple yet powerful personal finance management application built with Java and Spring Boot that tracks financial transactions and provides basic AI-powered insights to help improve financial habits.
+A friendly app built with Java and Spring Boot that helps you keep track of your money, like a digital piggy bank that's super smart!
 
-## Overview
+## 🌟 What Does This App Do?
 
-This MVP application allows users to record their financial transactions, organize them into categories, and receive AI-generated insights about their spending patterns. It serves as a practical demonstration of core Spring technologies while solving a real-world problem.
+Think of this app as your money helper. It lets you:
 
-## Core Features
+- 📝 Write down when money comes in (like your paycheck) and goes out (like buying groceries)
+- 📊 Sort your spending into groups (like "food," "fun stuff," or "bills")
+- 💼 Keep track of different bank accounts or credit cards
+- 📈 See pictures of where your money goes so you can make better choices
 
-### Transaction Management
-- Record basic income and expenses
-- Store essential transaction details (amount, date, description, category)
-- View transaction history
+## 🏗️ How It's Built
 
-### Category Management
-- Organize transactions into predefined categories
-- Create custom categories
+This project uses several building blocks (like LEGO pieces that fit together):
 
-### AI-Powered Basic Insights
-- Receive simple spending pattern analysis
-- Get basic recommendations for potential savings
-- View monthly spending summaries
+### Main Ingredients
+- **Java 17**: The main language I used to write the instructions
+- **Spring Boot**: A helper that makes everything work together without writing tons of code
+- **Spring Data JPA**: A magic translator that talks to the database
+- **Spring Security**: A security guard that keeps user information safe
+- **MySQL**: A digital filing cabinet where all the money information is stored
+- **Thymeleaf**: Creates the web pages you see in your browser
 
-## Technical Stack
-
-### Backend
-- **Java 17**: Core programming language
-- **Spring Boot 3.2.x**: Application framework
-- **Spring Data JPA**: Data access layer
-- **Spring Security**: Basic authentication and authorization
-- **Spring Boot Actuator**: Essential monitoring endpoints
-- **H2 Database**: In-memory database for development
-- **JUnit 5**: Testing framework
-- **OpenAI API**: Powers basic AI insights
-
-## Project Structure
+### How The Code Is Organized
 
 ```
-src/main/java/com/yourname/financetracker/
+src/main/java/vn/duke/finance_tracker/
 │
-├── FinanceTrackerApplication.java       // Main application class
+├── api/                      # All the money tracking features
+│   ├── controller/           # Handles what happens when you click buttons
+│   ├── dto/                  # Special message carriers
+│   ├── entity/               # Digital versions of real things (like accounts)
+│   ├── repository/           # Knows how to find information in the database
+│   └── service/              # Contains all the important rules
 │
-├── config/                              // Configuration classes
-│   ├── SecurityConfig.java              // Basic security setup
-│   └── AIServiceConfig.java             // AI service configuration
+├── authentication/           # Everything about logging in
+│   ├── controller/
+│   ├── dto/
+│   ├── entity/
+│   ├── repository/
+│   └── service/
 │
-├── model/                               // JPA entity classes
-│   ├── User.java                        // Basic user model
-│   ├── Transaction.java                 // Transaction model
-│   ├── Category.java                    // Category model
-│   └── AIInsight.java                   // Insight model
-│
-├── repository/                          // Spring Data repositories
-│   ├── UserRepository.java
-│   ├── TransactionRepository.java
-│   ├── CategoryRepository.java
-│   └── AIInsightRepository.java
-│
-├── service/                             // Business logic
-│   ├── UserService.java
-│   ├── TransactionService.java
-│   ├── CategoryService.java
-│   └── AIInsightService.java
-│
-├── controller/                          // REST controllers
-│   ├── AuthController.java
-│   ├── TransactionController.java
-│   ├── CategoryController.java
-│   └── AIInsightController.java
-│
-└── util/                                // Utility classes
-    └── AIPromptGenerator.java
+└── common/                   # Helpful tools used everywhere
+    ├── enums/                # Lists of fixed options
+    ├── exception/            # Handles when things go wrong
+    └── response/             # How the app talks back to you
 ```
 
-## Learning Objectives Covered
+## ✨ Cool Features
 
-This MVP project demonstrates essential Spring ecosystem capabilities:
+### 👤 User Stuff
+- Create your own account
+- Log in securely with a password
+- Update your profile information
 
-1. **Spring Configuration**: Uses Java Configuration and annotations for application setup.
+### 💳 Account Management
+- Add different accounts (like checking account, savings, credit card)
+- See how much money is in each account
+- Look at the history of each account
 
-2. **Testing**: Includes basic unit and integration tests with JUnit 5.
+### 📋 Transaction Tracking
+- Record when money comes in or goes out
+- Add details like what it was for and when it happened
+- Look back at your spending history
 
-3. **Spring Data Access**: Implements data access using Spring Data JPA.
+### 🏷️ Category Management
+- Group your spending (like "groceries" or "movies")
+- Create your own categories if you need them
+- Separate money coming in from money going out
 
-4. **Spring Boot**: Uses Spring Boot to simplify application development.
+## 🚀 How To Start Using It
 
-5. **Auto-configuration and Properties**: Leverages Spring Boot's auto-configuration capabilities.
+### What You Need First
+- Java 17 or newer installed on your computer
+- Maven (a helper tool) version 3.8 or newer
+- MySQL database (like a digital filing cabinet)
 
-6. **REST API**: Implements a simple REST API for core application functions.
+### Setup Steps
 
-7. **Spring Security**: Provides basic authentication and authorization.
-
-8. **Monitoring**: Uses Spring Boot Actuator for essential health checks and metrics.
-
-## Getting Started
-
-### Prerequisites
-
-- Java 17 or higher
-- Maven 3.8+
-- OpenAI API key (for AI insights feature)
-
-### Installation
-
-1. Clone the repository:
+1. **Get the code**
    ```
-   git clone https://github.com/yourusername/personal-finance-tracker.git
-   cd personal-finance-tracker
-   ```
-
-2. Configure application properties in `src/main/resources/application.properties`:
-   ```
-   # H2 Database Configuration
-   spring.datasource.url=jdbc:h2:mem:financedb
-   spring.datasource.username=sa
-   spring.datasource.password=
-   spring.h2.console.enabled=true
-   
-   # OpenAI API Configuration
-   openai.api.key=your_openai_api_key
-   
-   # JWT Configuration
-   jwt.secret=your_jwt_secret
-   jwt.expiration=86400000
+   git clone https://github.com/yourusername/finance-tracker.git
+   cd finance-tracker
    ```
 
-3. Build and run the application:
+2. **Set up your database**
+
+   Make sure MySQL is running and create a database called `finance_db`.
+
+3. **Tell the app how to find your database**
+
+   Look in the `application.yml` file and change these settings:
+   ```yaml
+   spring:
+     datasource:
+       url: jdbc:mysql://localhost:3306/finance_db
+       username: your_username
+       password: your_password
+   ```
+
+4. **Turn on the app**
    ```
    mvn spring-boot:run
    ```
 
-The application will be accessible at `http://localhost:8080`.
+5. **Use the app**
 
-## Core API Endpoints
+   Open your web browser and go to `http://localhost:8080`
 
-| Method | URL                       | Description                          |
-|--------|---------------------------|--------------------------------------|
-| POST   | /api/auth/register        | Register a new user                  |
-| POST   | /api/auth/login           | Authenticate a user                  |
-| GET    | /api/transactions         | Get user's transactions              |
-| POST   | /api/transactions         | Create a new transaction             |
-| GET    | /api/categories           | Get available categories             |
-| GET    | /api/insights             | Get basic AI-generated insights      |
+## 🔄 API Endpoints (How Other Programs Can Talk To This One)
 
-## Future Enhancements
+### User Login
+- `POST /api/auth/register` - Make a new user account
+- `POST /api/auth/login` - Sign in to your account
 
-After completing the MVP, the application can be extended with:
+### Money Accounts
+- `GET /account` - See all your accounts
+- `GET /account/{id}` - Look at one specific account
+- `POST /account` - Create a new account
+- `PUT /account/{id}` - Change account information
+- `DELETE /account/{id}` - Delete an account you don't want
 
-- Budget planning and tracking
-- Transaction import from bank statements
-- Advanced reporting and visualization
-- Investment tracking
-- Financial goal setting
+### Money Movements (Transactions)
+- `GET /transaction` - See all money movements
+- `GET /transaction/{id}` - Look at one specific transaction
+- `POST /transaction` - Record a new money movement
+- `PUT /transaction/{id}` - Fix a transaction's details
+- `DELETE /transaction/{id}` - Remove a transaction
 
-## License
+### Spending Categories
+- `GET /category` - See all your categories
+- `GET /category/{id}` - Look at one specific category
+- `POST /category` - Make a new category
+- `PUT /category/{id}` - Change a category
+- `DELETE /category/{id}` - Remove a category
 
-This project is licensed under the MIT License.
+## 📚 What You Can Learn From This Project
+
+This project shows off several important skills that employers look for:
+
+1. **Spring Boot Structure**: How to organize a real application
+2. **Database Work**: How to store and find information efficiently
+3. **Security**: How to keep user information safe
+4. **API Design**: How to create clean, usable interfaces for programs
+5. **Input Checking**: How to make sure data is correct before using it
+6. **Error Handling**: How to gracefully handle problems
+
+## 🔜 Future Upgrades
+
+Here are some cool features I could add next:
+
+- Budget planning - set goals and see if you're meeting them
+- Pretty charts and graphs to visualize your money
+- Export your financial reports to PDF or Excel
+- Automatic recurring transactions (like rent that comes out every month)
+- Goal setting (save for a vacation!)
+- Support for different currencies
+
+## 📄 License
+
+This project is available under the MIT License - see the LICENSE file for details.
